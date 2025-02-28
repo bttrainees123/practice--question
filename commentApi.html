@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Data Table</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 0px;
+            text-align: left;
+            border-bottom: 1px solid #a06969;
+        }
+        th {
+            background-color: #d17b7b;
+        }
+    </style>
+</head>
+<body>
+    <h1>post Api</h1>
+    <table >
+        <thead>
+            <tr>
+                <th>Post ID</th>
+                <th>ID</th>
+                <th>name</th>
+                <th>email</th>
+                <th>Body</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+
+    <script >
+
+       async function myData(){
+    try {
+        const resp = await fetch('https://jsonplaceholder.typicode.com/comments');
+    const apiData = await resp.json();
+    return apiData;
+    } catch (error) {
+        console.log(error)
+    }
+}
+async function displayData(){
+    const data = await myData();
+    const bodyTable = document.getElementById('tableBody')
+
+    if(!data){
+        console.log(`data is not found`);
+        return;
+    }
+      data.forEach(checkingData =>{
+        const row = document.createElement('tr')
+        row.innerHTML = `
+        <td>${checkingData.postId}</td>
+        <td>${checkingData.id}</td>
+        <td>${checkingData.name}</td>
+        <td>${checkingData.email}</td>
+        <td>${checkingData.body}</td>
+        `
+        bodyTable.appendChild(row)
+      })
+
+}
+displayData();
+
+
+    </script>
+</body>
+
+</html>

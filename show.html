@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Table</title>
+    <style>
+        table {
+            width: 100%;
+           
+        }
+        th, td {
+            padding: 20px;
+            text-align: center;
+        }
+        th {
+            background-color: #c40808;
+        }
+    </style>
+</head>
+<body>
+    <div id="tableDiv"></div>
+
+    <script>
+       
+        const students = [
+            { name: 'Vansh', year: 2025, branch: 'CSE' },
+            { name: 'Kushwaha', year: 2025, branch: 'EEE' },
+           
+        ];
+
+        function StudentTable(students) {
+           var tableContent='';
+           tableContent +=" <table>";
+            tableContent +="<tr><th>name</th><th>year</th><th>branch</th></tr>"
+
+            students.forEach(student =>{
+                tableContent += `<tr><td>${student.name}</td><td>${student.year}</td><td>${student.branch}</td></tr>`;
+            });
+
+            tableContent += '</table>'
+            return tableContent;
+
+        }
+        document.getElementById("tableDiv").innerHTML = StudentTable(students);
+    </script>
+</body>
+</html>
